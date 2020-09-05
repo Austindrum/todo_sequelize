@@ -1,0 +1,28 @@
+<%- include("../partials/header") %>
+<div class="container">
+    <div class="row">
+      <div class="col-md-6 m-auto border border-secondary rounded-lg p-3">
+        <h2 class="p-3 mb-3 text-center bg-light rounded-lg">登入</h2>
+        <form action="/users/login" method="POST">
+          <div class="form-group">
+            <label for="email">信箱</label>
+            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="您的信箱..." 
+            value="<%= email === "" ? "" : email %>">
+          </div>
+          <div class="form-group">
+            <label for="password">密碼</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="您的密碼...">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-success mb-1 btn-block">登入</button>
+            <a href="/auth/facebook" class="btn btn-primary btn-block">Facebook 登入</a>
+          </div>
+          <p class="mb-0">
+            <span>尚未註冊?</span>
+            <a href="/users/register">註冊</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+<%- include("../partials/footer") %>

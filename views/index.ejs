@@ -1,0 +1,39 @@
+<%- include("./partials/header") %>
+<div>
+    <h2 class="border-bottom border-dark p-2 mb-3">所有代辦事項</h2>
+    <% todos.forEach(todo => { %>
+        <div class="card mb-3">
+            <h3 class="card-header d-flex justify-content-between">
+                <span class="font-weight-bold">
+                    <input 
+                    type="checkbox" 
+                    class="todo-toggle"
+                    data-id="<%= todo.id %>" 
+                    data-status="<%= todo.isDone %>" 
+                    <%= todo.isDone ? "checked" : "" %>>
+                    <span class="<%= todo.isDone ? 'todo-done' : '' %>">
+                        <%= todo.title %>
+                    </span>
+                    <span class="text-warning">
+                        <% if(todo.isImportant) { %>
+                            <i class="fas fa-star"></i> 
+                        <% } %>
+                    </span>
+                </span>
+                <span class="h6 text-black-50 mb-0" style="line-height: 33.6px">更新於 
+                    <%= `${new Date(todo.createdAt).getFullYear()}/${new Date(todo.createdAt).getMonth() + 1}/${new Date(todo.createdAt).getDate()}` %></span>
+            </h3>
+            <div class="card-body">
+                <p class="card-text"><%= todo.comment ? todo.comment : "No Comment" %></p>
+                <div class="d-flex">
+                    <a href="/todos/<%= todo.id %>/edit" class="btn btn-sm btn-secondary mr-1">編輯</a>
+                    <form action="/todos/<%= todo.id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-sm btn-danger" type="submit">刪除</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <% }); %>
+</div>
+
+<%- include("./partials/footer") %>

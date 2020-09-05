@@ -1,0 +1,24 @@
+<%- include("../partials/header") %>
+<div>
+    <h2 class="border-bottom border-dark p-2 mb-3"><i class="fas fa-clipboard-list"></i>   編輯代辦事項</h2>
+    <form action="/todos/<%= todo.id %>?_method=PUT" method="POST">
+        <div class="form-group">
+            <label for="title">事件名稱</label>
+            <input type="text" class="form-control" id="title" name="title" value="<%= todo.title %>" placeholder="TItle...">
+        </div>
+        <div class="form-group">
+            <label for="comment">備註</label>
+            <textarea id="comment" cols="10" rows="5" class="form-control" name="comment" placeholder="Some Comment..."><%= todo.comment %></textarea>
+        </div>
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="important" name="isImportant" <%= todo.isImportant ? "checked" : "" %> >
+                <label class="form-check-label mt-1 ml-2" for="important">
+                    重要
+                </label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">更新</button>
+    </form>
+</div>
+<%- include("../partials/footer") %>
